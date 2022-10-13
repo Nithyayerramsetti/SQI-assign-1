@@ -1,0 +1,53 @@
+----customer table-----
+create table Customer
+(
+Id int primary key,
+FirstName nvarchar(40);
+LastName nvarchar(40);
+City nvarchar(40);
+Country nvarchar(40);
+Phone nvarchar(20);
+);
+insert into Customer values(1,'vidya','mattaparthi','amalapuram','India',123456789);
+insert into Customer values(2,'kriti','shetty','victoria','Australia',234567891);
+insert into Customer values(3,'mahi','kadali','quebec','Canada',134567892);
+insert into Customer values(4,'aina','akula','nara','Japan',345678912);
+
+
+
+-----order table------
+create table Order11
+(
+Id int primary key,
+OrderDate datetime NOT NULL,
+OrderNumber nvarchar(10),
+CustomerId int references Customer(Id),
+TotalAmount decimal(12,2)
+);
+insert into Order11(11,'2002-01-01 12:35:53.44','123',1,1.20);
+
+----product table----
+create table Product
+(
+Id int primary key,
+ProductName nvarchar(50),
+UnitPrice decimal(12,2),
+Package nvarchar(30),
+IsDiscontinued bit
+);
+insert into Product values(1,'mobiles','7000.234','50000p',1);
+insert into Product values(2,'telephone','8000.234','90000p',2);
+
+---orderitem table-----
+create table OrderItem
+(
+Id int primary key,
+OrderId int references Order11(Id),
+ProductId int references Product(Id),
+UnitPrice decimal(12,2),
+Quantity int
+);
+insert into OrderItem values(10,11,1,'1234.234',100);
+
+select country from Customer where Country like '%A%';
+select FirstName,LastName from Customer where name='__i';
